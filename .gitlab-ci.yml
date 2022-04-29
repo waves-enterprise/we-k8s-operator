@@ -1,0 +1,29 @@
+image: ${REGISTRY}/it/docker:19.03.1
+
+services:
+  - name: ${REGISTRY}/it/docker:19.03.1-dind
+    alias: docker
+
+variables:
+  DOCKER_HOST: tcp://docker:2375
+  DOCKER_TLS_CERTDIR: ""
+
+stages:
+  - release
+
+
+build_image:
+  stage: release
+  script:
+    - docker login -u "${REGISTRY_USER}" -p "${REGISTRY_PASSWORD}" "${REGISTRY}"
+    # Pull latest image for using cache
+    - docker pull "${REGISTRY}/it/we-mainnet-operator:latest" || true
+    - cat Dockerfile | docker build --cache-from "${REGISTRY}/it/we-mainnet-operator:latest" -t "${REGISTRY}/it/we-mainnet-operator:${CI_COMMIT_REF_NAME}" -t "${REGISTRY}/it/we-mainnet-operator:latest" -t "${REGISTRY}/waves-enterprise-public/we-mainnet-operator:latest" -f - .
+    - docker push "${REGISTRY}/it/we-mainnet-operator:${CI_COMMIT_REF_NAME}"
+    - docker push "${REGISTRY}/waves-enterprise-public/we-mainnet-operator:latest"
+    - docker push "${REGISTRY}/it/we-mainnet-operator:latest"
+  only:
+    - branches
+    - tags
+  tags:
+    - wavesenterprise

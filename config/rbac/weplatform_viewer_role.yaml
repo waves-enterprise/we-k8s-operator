@@ -1,0 +1,20 @@
+# permissions for end users to view WeMainnets.
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: WeMainnet-viewer-role
+rules:
+- apiGroups:
+  - apps.wavesenterprise.com
+  resources:
+  - WeMainnets
+  verbs:
+  - get
+  - list
+  - watch
+- apiGroups:
+  - apps.wavesenterprise.com
+  resources:
+  - WeMainnets/status
+  verbs:
+  - get

@@ -1,0 +1,185 @@
+
+---
+apiVersion: apiextensions.k8s.io/v1
+kind: CustomResourceDefinition
+metadata:
+  annotations:
+    controller-gen.kubebuilder.io/version: v0.7.0
+  creationTimestamp: null
+  name: wemainnets.apps.wavesenterprise.com
+spec:
+  group: apps.wavesenterprise.com
+  names:
+    kind: WeMainnet
+    listKind: WeMainnetList
+    plural: wemainnets
+    singular: wemainnet
+  scope: Namespaced
+  versions:
+  - name: v1
+    schema:
+      openAPIV3Schema:
+        description: WeMainnet is the Schema for the WeMainnets API
+        properties:
+          apiVersion:
+            description: 'APIVersion defines the versioned schema of this representation
+              of an object. Servers should convert recognized schemas to the latest
+              internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources'
+            type: string
+          kind:
+            description: 'Kind is a string value representing the REST resource this
+              object represents. Servers may infer this from the endpoint the client
+              submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds'
+            type: string
+          metadata:
+            type: object
+          spec:
+            description: WeMainnetSpec defines the desired state of WeMainnet
+            properties:
+              activate_user_enabled:
+                type: string
+              authadmin_enabled:
+                type: string
+              clean_state:
+                type: string
+              client_enabled:
+                type: string
+              cpu_auth_limit:
+                type: string
+              cpu_auth_request:
+                type: string
+              cpu_crawler_limit:
+                type: string
+              cpu_crawler_request:
+                type: string
+              cpu_dockerhost_limit:
+                type: string
+              cpu_dockerhost_request:
+                type: string
+              cpu_ds_limit:
+                type: string
+              cpu_ds_request:
+                type: string
+              cpu_frontend_limit:
+                type: string
+              cpu_frontend_request:
+                type: string
+              cpu_node_limit:
+                type: string
+              cpu_node_request:
+                type: string
+              crawler_service_token:
+                type: string
+              dataservice_service_token:
+                type: string
+              grpc_adresses:
+                type: string
+              image:
+                description: NODE
+                type: string
+              image_auth:
+                type: string
+              image_auth_admin:
+                type: string
+              image_crawler:
+                type: string
+              image_dockerhost:
+                description: DOCKERHOST
+                type: string
+              image_ds:
+                type: string
+              image_frontend:
+                type: string
+              image_nginx:
+                type: string
+              image_telegraf:
+                type: string
+              java_opts:
+                type: string
+              mail_enabled:
+                type: string
+              memory_auth_limit:
+                type: string
+              memory_auth_request:
+                type: string
+              memory_crawler_limit:
+                type: string
+              memory_crawler_request:
+                type: string
+              memory_dockerhost_limit:
+                type: string
+              memory_dockerhost_request:
+                type: string
+              memory_ds_limit:
+                type: string
+              memory_ds_request:
+                type: string
+              memory_frontend_limit:
+                type: string
+              memory_frontend_request:
+                type: string
+              memory_node_limit:
+                type: string
+              memory_node_request:
+                type: string
+              postgres_enabled:
+                type: string
+              privileged_dockerhost:
+                type: boolean
+              replicas:
+                format: int32
+                type: integer
+              replicas_auth:
+                description: AUTH
+                format: int32
+                type: integer
+              replicas_auth_admin:
+                description: AUTH_ADMIN
+                format: int32
+                type: integer
+              replicas_crawler:
+                description: CRAWLER
+                format: int32
+                type: integer
+              replicas_ds:
+                description: DATASERVICE
+                format: int32
+                type: integer
+              replicas_frontend:
+                description: FRONTEND
+                format: int32
+                type: integer
+              replicas_nginx:
+                description: Nginx
+                format: int32
+                type: integer
+              replicas_telegraf:
+                description: Telegraf
+                format: int32
+                type: integer
+              storage:
+                type: string
+              telegraf_enabled:
+                type: string
+            required:
+            - client_enabled
+            - image
+            - image_dockerhost
+            - postgres_enabled
+            - replicas
+            - storage
+            type: object
+          status:
+            description: WeMainnetStatus defines the observed state of WeMainnet
+            type: object
+        type: object
+    served: true
+    storage: true
+    subresources:
+      status: {}
+status:
+  acceptedNames:
+    kind: ""
+    plural: ""
+  conditions: []
+  storedVersions: []

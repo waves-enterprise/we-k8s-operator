@@ -1,0 +1,34 @@
+
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  creationTimestamp: null
+  name: manager-role
+rules:
+- apiGroups:
+  - apps.wavesenterprise.com
+  resources:
+  - WeMainnets
+  verbs:
+  - create
+  - delete
+  - get
+  - list
+  - patch
+  - update
+  - watch
+- apiGroups:
+  - apps.wavesenterprise.com
+  resources:
+  - WeMainnets/finalizers
+  verbs:
+  - update
+- apiGroups:
+  - apps.wavesenterprise.com
+  resources:
+  - WeMainnets/status
+  verbs:
+  - get
+  - patch
+  - update
